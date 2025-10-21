@@ -5,13 +5,13 @@ document.getElementById("form-votacion").addEventListener("submit", async (e) =>
   const data = new FormData(form);
 
   // Tu URL del Apps Script:
-  const scriptURL = "https://script.google.com/macros/s/AKfycby06ZEEGPGcl5S2PG_PnZxheuXbE3xpuLxqnSHr1bRvH1ZUUnBSu5Y2H_v6N-wZQUy5/exec";
+  const scriptURL = "https://script.google.com/macros/s/AKfycbx54b8XkWKgKs7mkaW6IYOycsWuXbE8lz9h0kHPH5AB-fUaEqdvjBSLOZRTl89K_Llj/exec";
 
   const mensaje = document.getElementById("mensaje");
   mensaje.textContent = "Enviando voto...";
 
   try {
-    const response = await fetch(scriptURL, { method: "POST", body: data });
+    const response = await fetch(scriptURL, { method: "POST", mode: "no-cors", body: new FormData(form) });
     if (response.ok) {
       mensaje.textContent = "¡Gracias por votar! 🎉";
       form.reset();

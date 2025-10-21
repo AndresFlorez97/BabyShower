@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baby Shower 💕 Invitación</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🎀 Baby Shower 🎀</h1>
+    <p class="intro">¡Acompañanos en este momento tan especial! 💕</p>
+
+    <h2>¿Team Rosa o Team Celeste?</h2>
+
+    <form id="voteForm">
+      <input type="text" id="name" placeholder="Tu nombre" required />
+      <div class="teams">
+        <label>
+          <input type="radio" name="team" value="Rosa" required />
+          💖 Team Rosa
+        </label>
+        <label>
+          <input type="radio" name="team" value="Celeste" required />
+          💙 Team Celeste
+        </label>
+      </div>
+
+      <button type="submit">Enviar mi voto 🎉</button>
+    </form>
+
+    <div id="thanksMessage" class="hidden">
+      <h3>¡Gracias por participar! 🎁</h3>
+      <p>Si querés colaborar con el baby 💕 podés hacerlo acá 👇</p>
+      <a href="https://link.mercadopago.com.ar/ahorrobebe" target="_blank" class="donate-btn">
+        💳 Ir a Mercado Pago
+      </a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

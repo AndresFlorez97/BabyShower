@@ -13,8 +13,11 @@
 
     <h2>¿Team Rosa o Team Celeste?</h2>
 
-    <form id="voteForm">
-      <input type="text" id="name" placeholder="Tu nombre" required />
+    <form id="form-votacion">
+      <input type="text" name="nombre" placeholder="Tu nombre" required />
+      <input type="tel" name="telefono" placeholder="Tu teléfono (opcional)" />
+      <input type="email" name="email" placeholder="Tu correo (opcional)" />
+
       <div class="teams">
         <label>
           <input type="radio" name="team" value="Rosa" required />
@@ -28,6 +31,8 @@
 
       <button type="submit">Enviar mi voto 🎉</button>
     </form>
+
+    <p id="mensaje" class="status-text"></p>
 
     <div id="thanksMessage" class="hidden">
       <h3>¡Gracias por participar! 🎁</h3>

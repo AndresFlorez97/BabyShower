@@ -1,15 +1,28 @@
-document.getElementById("voteForm").addEventListener("submit", function(e) {
+document.getElementById("form-votacion").addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const name = document.getElementById("name").value.trim();
-  const team = document.querySelector('input[name="team"]:checked').value;
+  const form = e.target;
+  const data = new FormData(form);
 
-  if (name && team) {
-    // Guardar datos en localStorage (simula el envío)
-    localStorage.setItem("babyshower_vote", JSON.stringify({ name, team }));
+  // Tu URL del Apps Script:
+  const scriptURL = "https://script.google.com/macros/s/AKfycby06ZEEGPGcl5S2PG_PnZxheuXbE3xpuLxqnSHr1bRvH1ZUUnBSu5Y2H_v6N-wZQUy5/exec";
 
-    // Ocultar el formulario y mostrar mensaje de gracias
-    document.getElementById("voteForm").classList.add("hidden");
-    document.getElementById("thanksMessage").classList.remove("hidden");
+  const mensaje = document.getElementById("mensaje");
+  mensaje.textContent = "Enviando voto...";
+
+  try {
+    const response = await fetch(scriptURL, { method: "POST", body: data });
+    if (response.ok) {
+      mensaje.textContent = "¡Gracias por votar! 🎉";
+      form.reset();
+
+      // Mostrar sección de agradecimiento
+      document.getElementById("thanksMessage").classList.remove("hidden");
+    } else {
+      mensaje.textContent = "Ocurrió un error, intentá nuevamente.";
+    }
+  } catch (error) {
+    mensaje.textContent = "Error de conexión. Revisá tu internet.";
+    console.error(error);
   }
 });

@@ -22,27 +22,39 @@ document.getElementById("form-votacion").addEventListener("submit", async (e) =>
       mensaje.textContent = "¡Gracias por votar! 🎉";
       form.reset();
 
-      const equipo = data.get("equipo");
+      // Obtener qué equipo fue seleccionado y normalizar
+      let equipo = data.get("team") || data.get("equipo") || "";
+      equipo = String(equipo).trim().toLowerCase(); // ahora siempre minúscula
 
       // Obtener votos actuales del almacenamiento local
-      let votosRosa = parseInt(localStorage.getItem("votosRosa") || "0");
-      let votosCeleste = parseInt(localStorage.getItem("votosCeleste") || "0");
+      let votosRosa = parseInt(localStorage.getItem("votosRosa") || "0", 10);
+      let votosCeleste = parseInt(localStorage.getItem("votosCeleste") || "0", 10);
 
       // Sumar voto según el equipo elegido
-      if (equipo === "rosa") votosRosa++;
-      if (equipo === "celeste") votosCeleste++;
+      if (equipo === "rosa") {
+        votosRosa++;
+      } else if (equipo === "celeste") {
+        votosCeleste++;
+      } else {
+        console.warn("⚠️ Equipo no reconocido:", equipo);
+      }
 
       // Guardar los nuevos valores
-      localStorage.setItem("votosRosa", votosRosa);
-      localStorage.setItem("votosCeleste", votosCeleste);
+      localStorage.setItem("votosRosa", String(votosRosa));
+      localStorage.setItem("votosCeleste", String(votosCeleste));
 
       // Mostrar los resultados actualizados
-      document.getElementById("votosRosa").textContent = votosRosa;
-      document.getElementById("votosCeleste").textContent = votosCeleste;
+      const elRosa = document.getElementById("votosRosa");
+      const elCeleste = document.getElementById("votosCeleste");
+      if (elRosa) elRosa.textContent = votosRosa;
+      if (elCeleste) elCeleste.textContent = votosCeleste;
 
       // Ocultar el formulario y mostrar resultados
-      document.getElementById("form-votacion").style.display = "none";
-      document.getElementById("resultado").style.display = "block";
+      const formContainer = document.getElementById("form-votacion");
+      const resultadoContainer = document.getElementById("resultado");
+
+      if (formContainer) formContainer.style.display = "none";
+      if (resultadoContainer) resultadoContainer.style.display = "block";
 
       mensaje.textContent = "";
     } else {
@@ -55,4 +67,13 @@ document.getElementById("form-votacion").addEventListener("submit", async (e) =>
     mensaje.textContent = "Error de conexión. Revisá tu internet.";
     console.error("Error en fetch:", error);
   }
+});
+
+// Mostrar los votos guardados cuando se carga la página
+document.addEventListener("DOMContentLoaded", () => {
+  const elRosa = document.getElementById("votosRosa");
+  const elCeleste = document.getElementById("votosCeleste");
+
+  if (elRosa) elRosa.textContent = localStorage.getItem("votosRosa") || "0";
+  if (elCeleste) elCeleste.textContent = localStorage.getItem("votosCeleste") || "0";
 });

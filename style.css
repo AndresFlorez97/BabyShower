@@ -175,3 +175,49 @@ button.primary:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba
   .container { padding: 18px; }
   h1 { font-size: 22px; }
 }
+
+/* Botón secundario (Ya voté 💖) */
+button.secondary {
+  background: linear-gradient(135deg, #56b0ff, #4d94ff);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  transition: transform .12s ease, box-shadow .12s ease;
+  margin-top: 12px;
+  box-shadow: 0 6px 14px rgba(77, 148, 255, 0.25);
+}
+
+button.secondary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(77, 148, 255, 0.35);
+}
+
+button.secondary:active {
+  transform: scale(0.97);
+  box-shadow: 0 3px 8px rgba(77, 148, 255, 0.3);
+}
+
+/* Botón terciario (Volver a votar) - naranja */
+button.tertiary{
+  background: linear-gradient(135deg, #ff9a3c, #ff7a00);
+  color:#fff;
+  padding:10px 18px;
+  border-radius:12px;
+  border:none;
+  cursor:pointer;
+  font-weight:700;
+  transition: transform .12s ease, box-shadow .12s ease;
+  margin-top:12px;
+  box-shadow:0 6px 14px rgba(255,122,0,.25);
+}
+button.tertiary:hover{
+  transform: translateY(-3px);
+  box-shadow:0 10px 26px rgba(255,122,0,.35);
+}
+button.tertiary:active{
+  transform: scale(.97);
+  box-shadow:0 3px 8px rgba(255,122,0,.3);
+}

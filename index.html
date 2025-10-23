@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Baby Shower 💕 Invitación</title>
 
-  <!-- Favicon (chupete.png) -->
-  <link rel="icon" href="Img/chupete.png" type="Img/png" />
+  <!-- Favicon -->
+  <link rel="icon" href="Img/chupete.png" type="image/png" />
 
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -40,9 +40,12 @@
       <button type="submit" class="primary">Enviar mi voto 🎉</button>
     </form>
 
+    <!-- Botón adicional -->
+    <button id="yaVoteBtn" class="secondary">Ya voté 💖</button>
+
     <p id="mensaje" class="status-text"></p>
 
-    <!-- Sección de agradecimiento y donación (aparece después de votar) -->
+    <!-- Sección de agradecimiento y donación -->
     <div id="resultado" class="panel hidden" aria-hidden="true">
       <h3>¡Gracias por participar! 🎁</h3>
 
@@ -54,18 +57,21 @@
 
       <p class="or-text">O también podés mandar una transferencia directa al alias:</p>
 
-      <!-- Alias en un renglón y botón copiar -->
       <div class="alias-row">
         <span id="aliasText" class="alias">GROU.D.MP</span>
         <button id="copyAliasBtn" class="copy-btn" title="Copiar alias">Copiar</button>
       </div>
-      <p class="small"> (a nombre de <strong>Andres Florez</strong>)</p>
+      <p class="small">(a nombre de <strong>Andres Florez</strong>)</p>
+
+      <!-- Botón para volver a la votación -->
+      <button id="volverBtn" class="tertiary">↩️ Volver a votar</button>
 
       <p class="sorteo">¡Todas las donaciones entran en un sorteo por una estadía en la costa*! 🏖️</p>
       <p class="small gray">*Sujeto a disponibilidad y no incluye traslado.</p>
     </div>
   </div>
 
+  <!-- Usa SOLO tu script externo con toda la lógica -->
   <script src="script.js"></script>
 </body>
 </html>

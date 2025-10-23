@@ -4,10 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Baby Shower 💕 Invitación</title>
+
+  <!-- Favicon (chupete.png) -->
+  <link rel="icon" href="Img/chupete.png" type="Img/png" />
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
+  <!-- Nubes de fondo -->
+  <div class="cloud cloud1"><img src="Img/Nubes.png" alt="nube"></div>
+  <div class="cloud cloud2"><img src="Img/Nubes.png" alt="nube"></div>
+
+  <div class="container" id="pageContainer">
     <h1>🎀 Baby Shower 🎀</h1>
     <p class="intro">¡Acompañanos en este momento tan especial! 💕</p>
 
@@ -29,43 +37,32 @@
         </label>
       </div>
 
-      <button type="submit">Enviar mi voto 🎉</button>
+      <button type="submit" class="primary">Enviar mi voto 🎉</button>
     </form>
 
     <p id="mensaje" class="status-text"></p>
 
     <!-- Sección de agradecimiento y donación (aparece después de votar) -->
-    <div id="resultado" style="display: none; text-align: center; margin-top: 20px;">
+    <div id="resultado" class="panel hidden" aria-hidden="true">
       <h3>¡Gracias por participar! 🎁</h3>
 
-      <p style="margin-top: 20px;">
-        Si querés colaborar con el baby 💖 podés hacerlo acá:
-      </p>
+      <p class="donate-cta">Si querés colaborar con el baby 💖 podés hacerlo acá:</p>
 
-      <a href="https://link.mercadopago.com.ar/ahorrobebe" target="_blank"
-         style="display: inline-block; background-color: #007bff; color: white; 
-                padding: 10px 20px; border-radius: 10px; text-decoration: none; font-weight: bold;">
+      <a href="https://link.mercadopago.com.ar/ahorrobebe" target="_blank" class="donate-btn">
         💳 Ir a Mercado Pago
       </a>
 
-      <p style="margin-top: 20px; font-size: 16px;">
-        O también podés mandar una transferencia directa al alias:
-      </p>
+      <p class="or-text">O también podés mandar una transferencia directa al alias:</p>
 
-      <!-- Alias en un renglón para copiar fácilmente -->
-      <p style="font-size: 18px; font-weight: bold; margin-top: 6px;">
-        GROU.D.MP
-      </p>
-      <p style="margin-top: 6px;">
-        (a nombre de <strong>Andres Florez</strong>)
-      </p>
+      <!-- Alias en un renglón y botón copiar -->
+      <div class="alias-row">
+        <span id="aliasText" class="alias">GROU.D.MP</span>
+        <button id="copyAliasBtn" class="copy-btn" title="Copiar alias">Copiar</button>
+      </div>
+      <p class="small"> (a nombre de <strong>Andres Florez</strong>)</p>
 
-      <p style="margin-top: 14px; font-size: 14px;">
-        ¡Todas las donaciones entran en un sorteo por una estadía en la costa*! 🏖️
-      </p>
-      <p style="font-size: 12px; color: gray; margin-top: 5px;">
-        *Sujeto a disponibilidad y no incluye traslado.
-      </p>
+      <p class="sorteo">¡Todas las donaciones entran en un sorteo por una estadía en la costa*! 🏖️</p>
+      <p class="small gray">*Sujeto a disponibilidad y no incluye traslado.</p>
     </div>
   </div>
 

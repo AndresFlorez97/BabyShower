@@ -1,81 +1,177 @@
+/* FONDO / NUBES */
+:root{
+  --primary:#ff7eb9;
+  --btn:#ff7eb9;
+  --donate:#007bff;
+}
+
+/* Body - cielo degradado */
 body {
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #f9d5ec, #cce7ff);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
   margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: linear-gradient(180deg, #9ad0ff 0%, #dff4ff 60%, #ffffff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  position: relative;
 }
 
+/* NUBES (animadas de lado a lado con recorrido completo) */
+.cloud {
+  position: absolute;
+  opacity: 0.9;
+  z-index: 0;
+  pointer-events: none;
+}
+.cloud img {
+  width: 260px;
+  display: block;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,0.06));
+}
+
+/* Nube 1: cruza de izquierda a derecha y vuelve */
+.cloud1 {
+  top: 8%;
+  left: -300px; /* comienza fuera de la pantalla */
+  animation: moveCloud1 60s linear infinite;
+}
+
+/* Nube 2: cruza de derecha a izquierda y vuelve */
+.cloud2 {
+  top: 20%;
+  right: -300px; /* comienza fuera de la pantalla */
+  animation: moveCloud2 75s linear infinite;
+  transform: scaleX(-1);
+}
+
+/* Animaciones */
+@keyframes moveCloud1 {
+  0% {
+    transform: translateX(0);
+    opacity: 0.3;
+  }
+  10% {
+    opacity: 1;
+  }
+  45% {
+    transform: translateX(calc(100vw + 400px)); /* cruza toda la pantalla */
+    opacity: 1;
+  }
+  55% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 0.3;
+  }
+}
+
+@keyframes moveCloud2 {
+  0% {
+    transform: translateX(0);
+    opacity: 0.3;
+  }
+  10% {
+    opacity: 1;
+  }
+  45% {
+    transform: translateX(calc(-100vw - 400px)); /* cruza de derecha a izquierda */
+    opacity: 1;
+  }
+  55% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 0.3;
+  }
+}
+
+/* CONTENEDOR */
 .container {
-  background: white;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 2; /* encima de las nubes */
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), #ffffff);
+  padding: 28px;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(15, 15, 30, 0.12);
   text-align: center;
   width: 90%;
-  max-width: 400px;
+  max-width: 420px;
+  transition: transform .45s ease, opacity .45s ease;
 }
 
-h1 {
-  color: #ff7eb9;
-}
+/* TITULOS */
+h1 { color: var(--primary); margin: 0 0 8px; font-size: 26px; }
+.intro { margin: 6px 0 18px; color: #333; }
 
-.teams {
-  display: flex;
-  justify-content: space-around;
-  margin: 15px 0;
-}
-
-button {
-  background: #ff7eb9;
-  color: white;
-  border: none;
-  padding: 10px 20px;
+/* FORM */
+form { display: flex; flex-direction: column; gap: 10px; margin-top: 6px; }
+input[type="text"], input[type="tel"], input[type="email"], select {
+  width: 100%;
+  padding: 10px 12px;
   border-radius: 10px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.3s;
+  border: 1px solid #e6eaf0;
+  font-size: 15px;
+  box-sizing: border-box;
+  outline: none;
 }
+input:focus, select:focus { box-shadow: 0 6px 18px rgba(0,0,0,0.06); border-color: #c6e6ff; }
 
-button:hover {
-  background: #ff4ea3;
-}
+/* Opciones team */
+.teams { display: flex; justify-content: space-around; gap: 12px; margin-top: 6px; }
+.teams label { display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; }
 
-.donate-btn {
-  background: #2d89ff;
+/* BOTONES */
+button.primary {
+  background: var(--btn);
   color: white;
-  padding: 10px 20px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+button.primary:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(255,126,185,0.14); }
+
+/* Mensajes */
+.status-text { margin-top: 10px; color: #333; min-height: 20px; }
+
+/* RESULTADO (fade) */
+.panel { opacity: 0; transform: translateY(6px); transition: opacity .4s ease, transform .4s ease; }
+.panel.visible { opacity: 1; transform: translateY(0); }
+
+/* DONATE */
+.donate-btn {
+  display: inline-block;
+  background: var(--donate);
+  color: white;
+  padding: 10px 18px;
   border-radius: 10px;
   text-decoration: none;
-  display: inline-block;
-  margin-top: 10px;
+  font-weight: 700;
+  margin-top: 8px;
 }
 
-.hidden {
-  display: none;
-}
+/* Alias + copiar */
+.alias-row { display:flex; gap:8px; align-items:center; justify-content:center; margin-top:10px; }
+.alias { font-size:18px; font-weight:700; user-select: all; background: #f6f9ff; padding:6px 10px; border-radius:8px; border:1px solid #e6eefc; }
+.copy-btn { background:#333; color:white; border:none; padding:8px 10px; border-radius:8px; cursor:pointer; font-weight:600; }
 
-input {
-  width: 90%;
-  padding: 8px;
-  margin: 8px 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
+/* Extras */
+.small { font-size: 13px; color: #666; margin-top:8px; }
+.gray { color: #9aa0a6; }
 
-#dataList {
-  text-align: left;
-  margin-top: 15px;
-  background: #f4f8ff;
-  padding: 10px;
-  border-radius: 10px;
-  max-height: 200px;
-  overflow-y: auto;
-}
+/* Hidden utility */
+.hidden { display: none; }
 
-#showDataBtn {
-  background: #555;
-  margin-top: 10px;
+/* Responsive */
+@media (max-width:420px){
+  .cloud img { width: 180px; }
+  .container { padding: 18px; }
+  h1 { font-size: 22px; }
 }
